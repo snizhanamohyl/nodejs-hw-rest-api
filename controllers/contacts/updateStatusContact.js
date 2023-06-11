@@ -1,6 +1,6 @@
 const { contactUpdateFavoriteSchema } = require("../../joi-schemas");
 const { HttpError } = require("../../helpers");
-const Contact = require("../../models");
+const { Contact } = require("../../models");
 
 const updateStatusContact = async (req, res) => {
   const { error } = contactUpdateFavoriteSchema.validate(req.body);

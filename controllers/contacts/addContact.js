@@ -1,6 +1,6 @@
 const { HttpError } = require("../../helpers");
 const { contactAddSchema } = require("../../joi-schemas");
-const Contact = require("../../models");
+const { Contact } = require("../../models");
 
 const addContact = async (req, res) => {
   const { error } = contactAddSchema.validate(req.body);
