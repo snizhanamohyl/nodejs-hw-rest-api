@@ -12,4 +12,6 @@ router.post("/logout", authenticate, usersControllers.logout);
 
 router.post("/current", authenticate, usersControllers.getCurrent);
 
+router.patch("/", authenticate, usersControllers.updateSubscription);
+
 module.exports = router;

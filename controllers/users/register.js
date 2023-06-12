@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 const { HttpError } = require("../../helpers");
-const userAddSchema = require("../../joi-schemas/users");
+const { userAddSchema } = require("../../joi-schemas");
 const { User } = require("../../models");
 
 const register = async (req, res) => {
