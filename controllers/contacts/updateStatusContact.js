@@ -1,6 +1,6 @@
 const { contactUpdateFavoriteSchema } = require("../../joi-schemas");
 const { HttpError } = require("../../helpers");
-const Contact = require("../../models/contact");
+const { Contact } = require("../../models");
 
 const updateStatusContact = async (req, res) => {
   const { error } = contactUpdateFavoriteSchema.validate(req.body);
@@ -12,7 +12,7 @@ const updateStatusContact = async (req, res) => {
     { new: true }
   );
 
-  if (!updatedContact) throw HttpError(404, "Not found");
+  if (!updatedContact) throw HttpError(404);
 
   res.json(updatedContact);
 };

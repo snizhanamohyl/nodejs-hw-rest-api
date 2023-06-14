@@ -1,8 +1,10 @@
 const { HttpError } = require("../../helpers");
-const Contact = require("../../models/contact");
+const { Contact } = require("../../models");
 
 const deleteContact = async (req, res) => {
-  const result = await Contact.findByIdAndDelete(req.params.contactId);
+  const { contactId } = req.params;
+
+  const result = await Contact.findByIdAndDelete(contactId);
 
   if (!result) throw HttpError(404);
 

@@ -1,10 +1,15 @@
 const { HttpError } = require("../../helpers");
-const Contact = require("../../models/contact");
+const { Contact } = require("../../models");
 
 const getContactById = async (req, res) => {
+  const { _id: ownerId } = req.user;
+
   const contact = await Contact.findById(req.params.contactId);
 
-  if (!contact) throw HttpError(404, "Not found");
+  const isUserContact =
+    JSON.stringify(contact.owner._id) === JSON.stringify(ownerId);
+
+  if (!contact || !isUserContact) throw HttpError(404);
 
   res.json(contact);
 };
