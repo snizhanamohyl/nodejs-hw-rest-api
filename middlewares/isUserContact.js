@@ -9,15 +9,6 @@ const isUserContact = async (req, res, next) => {
 
   const contactOwnerId = contact?.owner._id;
 
-  console.log(
-    "🚀 ~ file: isUserContact.js:13 ~ isUserContact ~ JSON.stringify(userId):",
-    JSON.stringify(userId)
-  );
-  console.log(
-    "🚀 ~ file: isUserContact.js:13 ~ isUserContact ~ JSON.stringify(contactOwnerId):",
-    JSON.stringify(contactOwnerId)
-  );
-
   if (JSON.stringify(contactOwnerId) !== JSON.stringify(userId))
     next(HttpError(404));
 

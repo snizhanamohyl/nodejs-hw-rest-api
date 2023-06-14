@@ -12,7 +12,7 @@ const updateStatusContact = async (req, res) => {
     { new: true }
   );
 
-  if (!updatedContact) throw HttpError(404, "Not found");
+  if (!updatedContact) throw HttpError(404);
 
   res.json(updatedContact);
 };

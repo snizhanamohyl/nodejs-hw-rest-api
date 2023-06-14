@@ -9,7 +9,7 @@ const getContactById = async (req, res) => {
   const isUserContact =
     JSON.stringify(contact.owner._id) === JSON.stringify(ownerId);
 
-  if (!contact || !isUserContact) throw HttpError(404, "Not found");
+  if (!contact || !isUserContact) throw HttpError(404);
 
   res.json(contact);
 };
