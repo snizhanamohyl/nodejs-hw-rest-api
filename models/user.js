@@ -24,6 +24,7 @@ const userSchema = Schema(
       enum: subscriptionList,
       default: subscriptionList[0],
     },
+    avatarURL: String,
     token: String,
   },
   { versionKey: false, timestamps: true }

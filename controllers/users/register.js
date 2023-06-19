@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const gravatar = require("gravatar");
 
 const { HttpError } = require("../../helpers");
 const { userAddSchema } = require("../../joi-schemas");
@@ -16,7 +17,14 @@ const register = async (req, res) => {
 
   const hashPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await User.create({ ...req.body, password: hashPassword });
+  const avatarURL = gravatar.url(req.body.email);
+
+  const newUser = await User.create({
+    ...req.body,
+    password: hashPassword,
+    avatarURL,
+  });
+
   res.status(201).json({
     user: {
       email: newUser.email,
