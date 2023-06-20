@@ -9,6 +9,7 @@ const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
   const { error } = userAddSchema.validate(req.body);
+
   if (error)
     throw HttpError(401, "Помилка від Joi або іншої бібліотеки валідації");
 
