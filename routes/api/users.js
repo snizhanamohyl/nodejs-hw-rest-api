@@ -23,4 +23,6 @@ router.patch(
 
 router.get("/verify/:verificationToken", usersControllers.verify);
 
+router.post("/verify", usersControllers.resendVerify);
+
 module.exports = router;

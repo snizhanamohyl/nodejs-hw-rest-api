@@ -1,9 +1,9 @@
 const { HttpError } = require("../../helpers");
-const { contactUpdateSubscriptionSchema } = require("../../joi-schemas");
+const { userUpdateSubscriptionSchema } = require("../../joi-schemas");
 const { User } = require("../../models");
 
 const updateSubscription = async (req, res) => {
-  const { error } = contactUpdateSubscriptionSchema.validate(req.body);
+  const { error } = userUpdateSubscriptionSchema.validate(req.body);
 
   if (error) throw HttpError(400, "invalid subscription value");
 
