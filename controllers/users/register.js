@@ -4,6 +4,10 @@ const gravatar = require("gravatar");
 const { HttpError } = require("../../helpers");
 const { userAddSchema } = require("../../joi-schemas");
 const { User } = require("../../models");
+const { nanoid } = require("nanoid");
+const { sendEmail } = require("../../helpers");
+
+const { BASE_URL } = process.env;
 
 const register = async (req, res) => {
   const { error } = userAddSchema.validate(req.body);
@@ -19,11 +23,22 @@ const register = async (req, res) => {
 
   const avatarURL = gravatar.url(req.body.email);
 
+  const verificationToken = nanoid();
+
   const newUser = await User.create({
     ...req.body,
     password: hashPassword,
     avatarURL,
+    verificationToken,
   });
+
+  const emailData = {
+    to: email,
+    subject: "Email verification",
+    html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Click here to verify your email.</a>`,
+  };
+
+  await sendEmail(emailData);
 
   res.status(201).json({
     user: {

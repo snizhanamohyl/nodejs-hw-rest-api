@@ -11,10 +11,18 @@ const userAddSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
 });
 
-const contactUpdateSubscriptionSchema = Joi.object({
+const userUpdateSubscriptionSchema = Joi.object({
   subscription: Joi.string()
     .valid(...subscriptionList)
     .required(),
 });
 
-module.exports = { userAddSchema, contactUpdateSubscriptionSchema };
+const userEmailSchema = Joi.object({
+  email: Joi.string().pattern(emailRegexp).required(),
+});
+
+module.exports = {
+  userAddSchema,
+  userUpdateSubscriptionSchema,
+  userEmailSchema,
+};
